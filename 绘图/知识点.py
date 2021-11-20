@@ -8,7 +8,7 @@ print "属性"
 """
         绘制出来的矩形,线段,范围(容器)都是Artist后者其子类
     ----------------------------------------------------------
-    |                                                        Figure:Artist绘制对象
+    |                                                        Figure:Artist绘制对象 窗口容器
     |
     |
     |
@@ -17,16 +17,16 @@ print "属性"
     |
     |                                                         dpi
     |                                                        |
-    |                                                        |
-    |                                                        |
-    |       Y---------------        ---------------          |
-    |        |  Axes:Artist|      |     Axes      |          |
-    |        |             |      |               |          |
-    |        |   各种图形为  |      |               |          |
-    |        |    Artist   |      |               |          |
-    |        |             |      |               |          |
-    |         --------------->  ---------------             |
-    |             Axis:Artis                                 |
+    |     一个绘图区域AxesSubplot------------------------     |
+    |    |                                             |     |
+    |    |  Y---------------        ---------------    |     |
+    |    |    |  Axes:Artist|      |     Axes      |   |     |
+    |    |    |             |      |               |   |     |
+    |    |   |   各种图形为  |      |               |   |     |
+    |    |    |    Artist   |      |               |   |     |
+    |    |    |             |      |               |   |     |
+    |    |     --------------->  ---------------       |     |
+    |    |         Axis:Artis                          |      |
     ----------------------------------------------------------
 """
 
@@ -91,6 +91,12 @@ print "属性"
             fig.lines.extend([line1, line2])
             fig.show()
 
+    绘图区域 AxesSubplot
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+
+        //plt.gca()
+        //
 
     容器:Axes:Artist
 
@@ -160,14 +166,19 @@ print "属性"
 
 
 """"
-    1:图形绘画对象为 Figure
+    1:图形绘画对象为 Figure 总容器窗口
         在 plt.figure()/plt.gcf()返回
 
     2:Figure 对象有个axes属性 表示 图表子图集合
+        AxesSubplot 某一个绘图容器
         plt.gca() 当前子图(每个子图 又有属于自己的属性)
+        plt.figure().add_subplot(111) 增加一个子图
 
     3:在绘制线段 图形时 得到Line2D对象
+        // 在当前第一个子图上画图
         lines = plt.plot(x,y2,'g--',label='cos(x^2)')
+        // 指定子图进行操作
+        plt.figure().add_subplot(111).lines.append(Line2D(....))
 
     4:属性操作
        plt.getp(obj,[color....]) 得到对象的属性  / 无属性名参数 表示 得到所有属性
