@@ -91,18 +91,12 @@ print "属性"
             fig.lines.extend([line1, line2])
             fig.show()
 
-    绘图区域 AxesSubplot
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-
-        //plt.gca()
-        //
-
-    容器:Axes:Artist
-
+    绘图区域 AxesSubplot:Artist
         1:创建
             fig = plt.figure()
             ax = fig.add_subplot(111)//fig.add_axes([0.1, 0.1, 0.7, 0.3])
+
+            ax = plt.gca() // 获取当前
         2:添加内容
             ax.plot(x,y,'g--')
             ax.add_patch()
